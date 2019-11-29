@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ruleset>
+    <!-- Set phpcs arguments -->
+    <arg value="p"/>
+
+    <!-- Scope -->
+    <file>./src</file>
+
+    <!-- Rules -->
+    <rule ref="./vendor/escapestudios/symfony2-coding-standard/Symfony/ruleset.xml" />
+    <rule ref="Symfony">
+        <exclude name="Symfony.Commenting.License"/>
+    </rule>
+</ruleset>

@@ -1,0 +1,28 @@
+{
+    "name": "kangourouge/messenger-bundle",
+    "description": "Commons CQRS messages & tools for messenger",
+    "type": "library",
+    "require": {
+        "php": "^7.2",
+        "symfony/messenger": "5.0",
+        "symfony/http-kernel": "^4.4|^5.0",
+        "symfony/serializer": "5.0.*",
+        "sensio/framework-extra-bundle" : "^5.5",
+        "psr/log": "~1.0"
+    },
+    "require-dev": {
+        "escapestudios/symfony2-coding-standard": "^3.9"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alexandre tomatis",
+            "email": "alexandre.tomatis@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "KRG\\Bundle\\MessengerBundle\\": "src"
+        }
+    }
+}
