@@ -11,7 +11,7 @@ use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class PatchCommandHandler implements MessageHandlerInterface
+final class PatchCommandHandler implements MessageHandlerInterface
 {
     use MessageRepositoryTrait;
 

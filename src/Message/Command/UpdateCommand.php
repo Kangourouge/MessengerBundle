@@ -10,7 +10,7 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class UpdateCommand extends AbstractCommand
+final class UpdateCommand extends AbstractCommand
 {
     /**
      * @return UuidInterface

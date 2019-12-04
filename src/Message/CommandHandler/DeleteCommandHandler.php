@@ -11,7 +11,7 @@ use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class DeleteCommandHandler implements MessageHandlerInterface
+final class DeleteCommandHandler implements MessageHandlerInterface
 {
     use MessageRepositoryTrait;
 

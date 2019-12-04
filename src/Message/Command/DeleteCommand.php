@@ -10,7 +10,7 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class DeleteCommand extends AbstractCommand
+final class DeleteCommand extends AbstractCommand
 {
     /**
      * @return UuidInterface

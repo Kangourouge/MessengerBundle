@@ -10,10 +10,10 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class CreateCommand extends AbstractCommand
+final class CreateCommand extends AbstractCommand
 {
     /** @var string */
-    protected $id;
+    private $id;
 
     /**
      * @return UuidInterface

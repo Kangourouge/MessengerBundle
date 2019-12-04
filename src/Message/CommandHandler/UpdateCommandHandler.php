@@ -13,12 +13,12 @@ use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class UpdateCommandHandler implements MessageHandlerInterface
+final class UpdateCommandHandler implements MessageHandlerInterface
 {
     use MessageRepositoryTrait;
 
     /** @var DenormalizerInterface */
-    protected $denormalizer;
+    private $denormalizer;
 
     /**
      * @param RepositoryRegistry    $repositoryRegistry
