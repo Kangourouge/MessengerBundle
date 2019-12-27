@@ -14,7 +14,7 @@ trait QueryListTrait
      */
     public function getFilters(): array
     {
-        return $this->getQueryParameters()['id'] ?? [];
+        return $this->getQueryParameters()['filters'] ?? [];
     }
 
     /**

@@ -54,7 +54,7 @@ How to use
 -----------
 
 - [Quick start](./doc/quick_start.md)
-- [Commands](./doc/commands.md)
+- [Commands](./doc/command.md)
 - [Queries](./doc/queries.md)
 - [Validation](./doc/validation.md)
 
@@ -62,3 +62,8 @@ Advanced
 --------
 
 - @TODO [Make your own message](./doc/make_your_own_message.md)
+
+Todo
+----
+
+- Get only query param in paramconverter
