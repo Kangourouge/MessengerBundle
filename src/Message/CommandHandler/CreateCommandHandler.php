@@ -31,19 +31,21 @@ final class CreateCommandHandler implements MessageHandlerInterface
     }
 
     /**
-     * @param CreateCommand $createCommand
+     * @param CreateCommand $command
+     *
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    public function __invoke(CreateCommand $createCommand): void
+    public function __invoke(CreateCommand $command): void
     {
-        $content = $createCommand->getContent();
+        $content = $command->getContent();
 
-        if (null !== $createCommand->getEntityClass()) {
-            $entity = $this->denormalizer->denormalize($content, $createCommand->getEntityClass());
+        if ($command->isDenormalized()) {
+            $entity = $this->denormalizer->denormalize($content, $command->getEntityClass());
         }
 
         $this
-            ->generateRepository($createCommand)
-            ->addParameter($createCommand->getId())
+            ->generateRepository($command)
+            ->addParameter($command->getEntityId())
             ->addParameter($entity ?? $content)
             ->execute()
         ;

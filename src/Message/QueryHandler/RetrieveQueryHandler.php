@@ -16,15 +16,15 @@ final class RetrieveQueryHandler implements MessageHandlerInterface
     use MessageRepositoryTrait;
 
     /**
-     * @param RetrieveQuery $retrieveQuery
+     * @param RetrieveQuery $query
      *
      * @return array
      */
-    public function __invoke(RetrieveQuery $retrieveQuery): array
+    public function __invoke(RetrieveQuery $query): array
     {
         return $this
-            ->generateRepository($retrieveQuery)
-            ->addParameter($retrieveQuery->getId())
+            ->generateRepository($query)
+            ->addParameter($query->getPathParameters()['id'])
             ->getResult()
         ;
     }

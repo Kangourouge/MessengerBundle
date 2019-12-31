@@ -16,14 +16,14 @@ final class PatchCommandHandler implements MessageHandlerInterface
     use MessageRepositoryTrait;
 
     /**
-     * @param PatchCommand $patchCommand
+     * @param PatchCommand $command
      */
-    public function __invoke(PatchCommand $patchCommand): void
+    public function __invoke(PatchCommand $command): void
     {
         $this
-            ->generateRepository($patchCommand)
-            ->addParameter($patchCommand->getId())
-            ->addParameter($patchCommand->getContent())
+            ->generateRepository($command)
+            ->addParameter($command->getPathParameters()['id'])
+            ->addParameter($command->getContent())
             ->execute()
         ;
     }

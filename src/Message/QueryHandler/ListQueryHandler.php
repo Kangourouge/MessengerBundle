@@ -16,18 +16,18 @@ final class ListQueryHandler implements MessageHandlerInterface
     use MessageRepositoryTrait;
 
     /**
-     * @param ListQuery $listQuery
+     * @param ListQuery $query
      *
      * @return array
      */
-    public function __invoke(ListQuery $listQuery): array
+    public function __invoke(ListQuery $query): array
     {
         return $this
-            ->generateRepository($listQuery)
-            ->addParameter($listQuery->getFilters())
-            ->addParameter($listQuery->getPage())
-            ->addParameter($listQuery->getRowPerPage())
-            ->addParameter($listQuery->getSort())
+            ->generateRepository($query)
+            ->addParameter($query->getFilters())
+            ->addParameter($query->getPage())
+            ->addParameter($query->getRowPerPage())
+            ->addParameter($query->getSort())
             ->getResult()
         ;
     }

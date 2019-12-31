@@ -2,23 +2,16 @@
 
 namespace KRG\Bundle\MessengerBundle\Message\Query;
 
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
+use KRG\Bundle\MessengerBundle\Message\AbstractMessage;
 
 /**
  * Class ListByEntityQuery
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-final class ListByEntityQuery extends AbstractQuery
+final class ListByEntityQuery extends AbstractMessage
 {
     use QueryListTrait;
 
-    /**
-     * @return UuidInterface
-     */
-    public function getId(): UuidInterface
-    {
-        return Uuid::fromString($this->getPathParameters()['id']);
-    }
+    const TYPE = 'query';
 }

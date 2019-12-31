@@ -13,6 +13,18 @@ trait PayloadTrait
     protected $payload;
 
     /**
+     * @param array $payload
+     *
+     * @return MessageInterface
+     */
+    public function setPayload(array $payload): MessageInterface
+    {
+        $this->payload = $payload;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getPayload(): array

@@ -31,19 +31,21 @@ final class UpdateCommandHandler implements MessageHandlerInterface
     }
 
     /**
-     * @param UpdateCommand $updateCommand
+     * @param UpdateCommand $command
+     *
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    public function __invoke(UpdateCommand $updateCommand): void
+    public function __invoke(UpdateCommand $command): void
     {
-        $content = $updateCommand->getContent();
+        $content = $command->getContent();
 
-        if (null !== $updateCommand->getEntityClass()) {
-            $entity = $this->denormalizer->denormalize($content, $updateCommand->getEntityClass());
+        if ($command->isDenormalized()) {
+            $entity = $this->denormalizer->denormalize($content, $command->getEntityClass());
         }
 
         $this
-            ->generateRepository($updateCommand)
-            ->addParameter($updateCommand->getId())
+            ->generateRepository($command)
+            ->addParameter($command->getPathParameters()['id'])
             ->addParameter($entity ?? $content)
             ->execute()
         ;

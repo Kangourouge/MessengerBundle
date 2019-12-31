@@ -3,6 +3,7 @@
     "description": "Commons CQRS messages & tools for messenger",
     "type": "library",
     "require": {
+        "ext-json": "*",
         "php": "^7.2",
         "symfony/messenger": "^4.3",
         "symfony/http-kernel": "^4.4|^5.0",

@@ -21,7 +21,7 @@ trait MessageRepositoryTrait
     protected $repositoryMethod;
 
     /** @var string */
-    protected $user;
+    protected $userId;
 
     /** @var array */
     protected $methodParameters;
@@ -41,7 +41,7 @@ trait MessageRepositoryTrait
      */
     protected function generateRepository(MessageInterface $message): self
     {
-        $this->user = $message->getUser();
+        $this->userId = $message->getUserId();
         $repositoryInterface = $message->getRepositoryInterface();
         $this->repositoryMethod = $message->getRepositoryMethod();
         $this->repository = $this->repositoryRegistry->get($repositoryInterface);
@@ -76,8 +76,8 @@ trait MessageRepositoryTrait
      */
     protected function execute(): void
     {
-        if (null !== $this->user) {
-            $this->methodParameters[] = $this->user;
+        if (null !== $this->userId) {
+            $this->methodParameters[] = $this->userId;
         }
 
         call_user_func_array([$this->repository, $this->repositoryMethod], $this->methodParameters ?? []);
@@ -88,8 +88,8 @@ trait MessageRepositoryTrait
      */
     protected function getResult(): array
     {
-        if (null !== $this->user) {
-            $this->methodParameters[] = $this->user;
+        if (null !== $this->userId) {
+            $this->methodParameters[] = $this->userId;
         }
 
         return call_user_func_array([$this->repository, $this->repositoryMethod], $this->methodParameters ?? []);

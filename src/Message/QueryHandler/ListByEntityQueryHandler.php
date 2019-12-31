@@ -16,19 +16,19 @@ final class ListByEntityQueryHandler implements MessageHandlerInterface
     use MessageRepositoryTrait;
 
     /**
-     * @param ListByEntityQuery $listByEntityQuery
+     * @param ListByEntityQuery $query
      *
      * @return array
      */
-    public function __invoke(ListByEntityQuery $listByEntityQuery): array
+    public function __invoke(ListByEntityQuery $query): array
     {
         return $this
-            ->generateRepository($listByEntityQuery)
-            ->addParameter($listByEntityQuery->getId())
-            ->addParameter($listByEntityQuery->getFilters())
-            ->addParameter($listByEntityQuery->getPage())
-            ->addParameter($listByEntityQuery->getRowPerPage())
-            ->addParameter($listByEntityQuery->getSort())
+            ->generateRepository($query)
+            ->addParameter($query->getPathParameters()['id'])
+            ->addParameter($query->getFilters())
+            ->addParameter($query->getPage())
+            ->addParameter($query->getRowPerPage())
+            ->addParameter($query->getSort())
             ->getResult()
         ;
     }

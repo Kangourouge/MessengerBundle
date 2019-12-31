@@ -16,14 +16,14 @@ final class SimpleListQueryHandler implements MessageHandlerInterface
     use MessageRepositoryTrait;
 
     /**
-     * @param SimpleListQuery $simpleListQuery
+     * @param SimpleListQuery $query
      *
      * @return array
      */
-    public function __invoke(SimpleListQuery $simpleListQuery): array
+    public function __invoke(SimpleListQuery $query): array
     {
         return $this
-            ->generateRepository($simpleListQuery)
+            ->generateRepository($query)
             ->getResult()
         ;
     }

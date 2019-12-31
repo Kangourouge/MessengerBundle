@@ -2,8 +2,6 @@
 
 namespace KRG\Bundle\MessengerBundle\Message;
 
-use Ramsey\Uuid\UuidInterface;
-
 /**
  * Interface MessageInterface
  *
@@ -17,6 +15,11 @@ interface MessageInterface
     public function getMessageName(): string;
 
     /**
+     * @return string
+     */
+    public function getMessageType(): string;
+
+    /**
      * @return array
      */
     public function getPayload(): array;
@@ -24,7 +27,17 @@ interface MessageInterface
     /**
      * @return array
      */
-    public function getPathParameters(): array;
+    public function getPathParameters(): ?array;
+
+    /**
+     * @return array
+     */
+    public function getContent(): ?array;
+
+    /**
+     * @return array
+     */
+    public function getQueryParameters(): ?array;
 
     /**
      * @return string|null
@@ -47,12 +60,97 @@ interface MessageInterface
     public function getValidationGroups(): ?array;
 
     /**
-     * @return UuidInterface|null
+     * @return string|null
      */
-    public function getUser(): ?UuidInterface;
+    public function getUserId(): ?string;
 
     /**
-     * @param string $user
+     * @return string
      */
-    public function setUser(string $user): void;
+    public function getEntityClass(): ?string;
+
+    /**
+     * @return bool
+     */
+    public function isLogged(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isDenormalized(): bool;
+
+    /**
+     * @return null|string
+     */
+    public function getEntityId(): ?string;
+
+    /**
+     * @param bool $denormalized
+     *
+     * @return self
+     */
+    public function setDenormalized(bool $denormalized): self;
+
+    /**
+     * @param bool $logged
+     *
+     * @return self
+     */
+    public function setLogged(bool $logged): self;
+
+    /**
+     * @param string $entityClass
+     *
+     * @return self
+     */
+    public function setEntityClass(?string $entityClass): self;
+
+    /**
+     * @param string $repositoryMethod
+     *
+     * @return self
+     */
+    public function setRepositoryMethod(?string $repositoryMethod): self;
+
+    /**
+     * @param string $repositoryInterface
+     *
+     * @return self
+     */
+    public function setRepositoryInterface(?string $repositoryInterface): self;
+
+    /**
+     * @param array $validationGroups
+     *
+     * @return self
+     */
+    public function setValidationGroups(array $validationGroups): self;
+
+    /**
+     * @param string $userId
+     *
+     * @return self
+     */
+    public function setUserId(?string $userId): self;
+
+    /**
+     * @param string $validationName
+     *
+     * @return self
+     */
+    public function setValidationName(?string $validationName): self;
+
+    /**
+     * @param array $payload
+     *
+     * @return self
+     */
+    public function setPayload(array $payload): self;
+
+    /**
+     * @param string $entityId
+     *
+     * @return self
+     */
+    public function setEntityId(string $entityId): self;
 }

@@ -16,13 +16,13 @@ final class DeleteCommandHandler implements MessageHandlerInterface
     use MessageRepositoryTrait;
 
     /**
-     * @param DeleteCommand $deleteCommand
+     * @param DeleteCommand $command
      */
-    public function __invoke(DeleteCommand $deleteCommand): void
+    public function __invoke(DeleteCommand $command): void
     {
         $this
-            ->generateRepository($deleteCommand)
-            ->addParameter($deleteCommand->getId())
+            ->generateRepository($command)
+            ->addParameter($command->getPathParameters()['id'])
             ->execute()
         ;
     }
