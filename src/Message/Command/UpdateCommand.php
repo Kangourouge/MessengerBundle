@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\Command;
+namespace Kangourouge\MessengerBundle\Message\Command;
 
-use KRG\Bundle\MessengerBundle\Message\AbstractMessage;
+use Kangourouge\MessengerBundle\Message\AbstractMessage;
 
 /**
  * Class UpdateCommand

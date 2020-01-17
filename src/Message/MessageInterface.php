@@ -1,6 +1,6 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message;
+namespace Kangourouge\MessengerBundle\Message;
 
 /**
  * Interface MessageInterface

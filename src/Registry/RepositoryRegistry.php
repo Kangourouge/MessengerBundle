@@ -1,6 +1,6 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Registry;
+namespace Kangourouge\MessengerBundle\Registry;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

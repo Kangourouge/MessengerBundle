@@ -1,19 +1,19 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Action;
+namespace Kangourouge\MessengerBundle\Action;
 
-use KRG\Bundle\MessengerBundle\Message\MessageBus\QueryBus;
-use KRG\Bundle\MessengerBundle\Message\Query\ListByEntityQuery;
-use KRG\Bundle\MessengerBundle\Service\MessageLoggerInterface;
-use KRG\Bundle\MessengerBundle\Service\MessageResourceValidatorInterface;
+use Kangourouge\MessengerBundle\Message\MessageBus\QueryBus;
+use Kangourouge\MessengerBundle\Message\Query\ListByEntityQuery;
+use Kangourouge\MessengerBundle\Service\MessageLoggerInterface;
+use Kangourouge\MessengerBundle\Service\MessageResourceValidatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Class ListByEntityAction
+ * Class ListByReferenceAction
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-final class ListByEntityAction
+final class ListByReferenceAction
 {
     /** @var QueryBus */
     private $queryBus;

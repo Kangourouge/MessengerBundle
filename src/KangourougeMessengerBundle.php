@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle;
+namespace Kangourouge\MessengerBundle;
 
-use KRG\Bundle\MessengerBundle\DependencyInjection\Compiler\RegistryCompilerPass;
+use Kangourouge\MessengerBundle\DependencyInjection\Compiler\RegistryCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author Alexandre Tomatis <alexandre.tomatis@gmail.com>
  */
-class MessengerBundle extends Bundle
+class KangourougeMessengerBundle extends Bundle
 {
     /**
      * @param ContainerBuilder $container

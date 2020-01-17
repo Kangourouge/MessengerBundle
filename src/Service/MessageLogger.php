@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Service;
+namespace Kangourouge\MessengerBundle\Service;
 
-use KRG\Bundle\MessengerBundle\Message\MessageInterface;
+use Kangourouge\MessengerBundle\Message\MessageInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**

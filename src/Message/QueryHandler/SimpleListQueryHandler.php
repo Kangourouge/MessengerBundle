@@ -1,9 +1,9 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\QueryHandler;
+namespace Kangourouge\MessengerBundle\Message\QueryHandler;
 
-use KRG\Bundle\MessengerBundle\Message\MessageRepositoryTrait;
-use KRG\Bundle\MessengerBundle\Message\Query\SimpleListQuery;
+use Kangourouge\MessengerBundle\Message\MessageRepositoryTrait;
+use Kangourouge\MessengerBundle\Message\Query\SimpleListQuery;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\QueryHandler;
+namespace Kangourouge\MessengerBundle\Message\QueryHandler;
 
-use KRG\Bundle\MessengerBundle\Message\MessageRepositoryTrait;
-use KRG\Bundle\MessengerBundle\Message\Query\ListByEntityQuery;
+use Kangourouge\MessengerBundle\Message\MessageRepositoryTrait;
+use Kangourouge\MessengerBundle\Message\Query\ListByEntityQuery;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 /**
@@ -27,7 +27,7 @@ final class ListByEntityQueryHandler implements MessageHandlerInterface
             ->addParameter($query->getPathParameters()['id'])
             ->addParameter($query->getFilters())
             ->addParameter($query->getPage())
-            ->addParameter($query->getRowPerPage())
+            ->addParameter($query->getRowsPerPage())
             ->addParameter($query->getSort())
             ->getResult()
         ;

@@ -1,11 +1,11 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Action;
+namespace Kangourouge\MessengerBundle\Action;
 
-use KRG\Bundle\MessengerBundle\Message\MessageBus\QueryBus;
-use KRG\Bundle\MessengerBundle\Message\Query\RetrieveQuery;
-use KRG\Bundle\MessengerBundle\Service\MessageLoggerInterface;
-use KRG\Bundle\MessengerBundle\Service\MessageResourceValidatorInterface;
+use Kangourouge\MessengerBundle\Message\MessageBus\QueryBus;
+use Kangourouge\MessengerBundle\Message\Query\RetrieveQuery;
+use Kangourouge\MessengerBundle\Service\MessageLoggerInterface;
+use Kangourouge\MessengerBundle\Service\MessageResourceValidatorInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**

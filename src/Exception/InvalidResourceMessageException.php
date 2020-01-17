@@ -1,6 +1,6 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Exception;
+namespace Kangourouge\MessengerBundle\Exception;
 
 /**
  * Class InvalidResourceMessageException

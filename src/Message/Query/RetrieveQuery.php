@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\Query;
+namespace Kangourouge\MessengerBundle\Message\Query;
 
-use KRG\Bundle\MessengerBundle\Message\AbstractMessage;
+use Kangourouge\MessengerBundle\Message\AbstractMessage;
 
 /**
  * Class RetrieveQuery

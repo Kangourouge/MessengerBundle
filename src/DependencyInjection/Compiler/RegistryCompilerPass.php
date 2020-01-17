@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\DependencyInjection\Compiler;
+namespace Kangourouge\MessengerBundle\DependencyInjection\Compiler;
 
-use KRG\Bundle\MessengerBundle\Registry\RepositoryRegistry;
+use Kangourouge\MessengerBundle\Registry\RepositoryRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

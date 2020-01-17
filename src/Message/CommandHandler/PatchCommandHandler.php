@@ -1,9 +1,9 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\CommandHandler;
+namespace Kangourouge\MessengerBundle\Message\CommandHandler;
 
-use KRG\Bundle\MessengerBundle\Message\Command\PatchCommand;
-use KRG\Bundle\MessengerBundle\Message\MessageRepositoryTrait;
+use Kangourouge\MessengerBundle\Message\Command\PatchCommand;
+use Kangourouge\MessengerBundle\Message\MessageRepositoryTrait;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 /**

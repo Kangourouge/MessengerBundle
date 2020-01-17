@@ -1,10 +1,10 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Action;
+namespace Kangourouge\MessengerBundle\Action;
 
-use KRG\Bundle\MessengerBundle\Message\Command\PatchCommand;
-use KRG\Bundle\MessengerBundle\Service\MessageLoggerInterface;
-use KRG\Bundle\MessengerBundle\Service\MessageResourceValidatorInterface;
+use Kangourouge\MessengerBundle\Message\Command\PatchCommand;
+use Kangourouge\MessengerBundle\Service\MessageLoggerInterface;
+use Kangourouge\MessengerBundle\Service\MessageResourceValidatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 

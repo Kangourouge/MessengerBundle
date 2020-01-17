@@ -23,7 +23,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "KRG\\Bundle\\MessengerBundle\\": "src"
+            "Kangourouge\\MessengerBundle\\": "src"
         }
     }
 }

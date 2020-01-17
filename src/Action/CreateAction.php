@@ -1,9 +1,9 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Action;
+namespace Kangourouge\MessengerBundle\Action;
 
-use KRG\Bundle\MessengerBundle\Message\Command\CreateCommand;
-use KRG\Bundle\MessengerBundle\Service\MessageLoggerInterface;
+use Kangourouge\MessengerBundle\Message\Command\CreateCommand;
+use Kangourouge\MessengerBundle\Service\MessageLoggerInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;

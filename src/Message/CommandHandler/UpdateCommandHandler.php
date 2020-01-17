@@ -1,10 +1,10 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\CommandHandler;
+namespace Kangourouge\MessengerBundle\Message\CommandHandler;
 
-use KRG\Bundle\MessengerBundle\Message\Command\UpdateCommand;
-use KRG\Bundle\MessengerBundle\Message\MessageRepositoryTrait;
-use KRG\Bundle\MessengerBundle\Registry\RepositoryRegistry;
+use Kangourouge\MessengerBundle\Message\Command\UpdateCommand;
+use Kangourouge\MessengerBundle\Message\MessageRepositoryTrait;
+use Kangourouge\MessengerBundle\Registry\RepositoryRegistry;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 

@@ -1,0 +1,51 @@
+actions:
+  list:
+    method: GET
+    controller: Kangourouge\MessengerBundle\Action\ListAction
+    repository_method: list
+    path: '{entity}'
+  list_by_reference:
+    method: GET
+    controller: Kangourouge\MessengerBundle\Action\ListByReferenceAction
+    repository_method: listByReference
+    path: '{entity}/{id}/{reference}'
+  retrieve:
+    method: GET
+    controller: Kangourouge\MessengerBundle\Action\RetrieveAction
+    repository_method: retrieve
+    path: '{entity}/{id}'
+  retrieve_many:
+    method: GET
+    controller: Kangourouge\MessengerBundle\Action\RetrieveManyAction
+    repository_method: retrieveMany
+    path: '{entity}'
+  create:
+    method: POST
+    controller: Kangourouge\MessengerBundle\Action\CreateAction
+    repository_method: create
+    path: '{entity}'
+  update:
+    method: PUT
+    controller: Kangourouge\MessengerBundle\Action\UpdateAction
+    repository_method: update
+    path: '{entity}/{id}'
+  patch:
+    method: PATCH
+    controller: Kangourouge\MessengerBundle\Action\PatchAction
+    repository_method: patch
+    path: '{entity}/{id}'
+  delete:
+    method: DELETE
+    controller: Kangourouge\MessengerBundle\Action\DeleteAction
+    repository_method: delete
+    path: '{entity}/{id}'
+  update_many:
+    method: PUT
+    controller: Kangourouge\MessengerBundle\Action\UpdateManyAction
+    repository_method: updateMany
+    path: '{entity}'
+  delete_many:
+    method: DELETE
+    controller: Kangourouge\MessengerBundle\Action\DeleteManyAction
+    repository_method: deleteMany
+    path: '{entity}'

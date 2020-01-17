@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message;
+namespace Kangourouge\MessengerBundle\Message;
 
-use KRG\Bundle\MessengerBundle\Registry\RepositoryRegistry;
+use Kangourouge\MessengerBundle\Registry\RepositoryRegistry;
 
 /**
  * Trait MessageRepositoryTrait

@@ -44,7 +44,7 @@ Tag our repositories with 'messenger_bundle.repository'
 ```yaml
 services:
   Infrastructure\Repository\:
-    resource: '../../src/Infrastructure/Repository/*'
+    resource: RepositoryConfig
     tags: ['messenger_bundle.repository']
     public: true
 ```

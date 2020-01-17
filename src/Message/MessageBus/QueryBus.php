@@ -1,6 +1,6 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\MessageBus;
+namespace Kangourouge\MessengerBundle\Message\MessageBus;
 
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\HandleTrait;

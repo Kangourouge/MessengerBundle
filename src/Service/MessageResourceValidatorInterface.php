@@ -1,9 +1,9 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Service;
+namespace Kangourouge\MessengerBundle\Service;
 
-use KRG\Bundle\MessengerBundle\Exception\InvalidResourceMessageException;
-use KRG\Bundle\MessengerBundle\Message\MessageInterface;
+use Kangourouge\MessengerBundle\Exception\InvalidResourceMessageException;
+use Kangourouge\MessengerBundle\Message\MessageInterface;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 

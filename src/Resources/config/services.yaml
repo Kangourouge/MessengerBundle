@@ -4,29 +4,33 @@ services:
     autoconfigure: true
     public: false
 
-  KRG\Bundle\MessengerBundle\Registry\RepositoryRegistry: ~
-  KRG\Bundle\MessengerBundle\Message\MessageBus\QueryBus: ~
+  Kangourouge\MessengerBundle\Registry\RepositoryRegistry: ~
+  Kangourouge\MessengerBundle\Message\MessageBus\QueryBus: ~
 
-  KRG\Bundle\MessengerBundle\ParamConverter\:
+  Kangourouge\MessengerBundle\ParamConverter\:
     resource: '../../ParamConverter/*'
     tags:
       - { name: request.param_converter, priority: -2 }
 
-  KRG\Bundle\MessengerBundle\Message\QueryHandler\:
+  Kangourouge\MessengerBundle\Message\QueryHandler\:
     resource: '../../Message/QueryHandler/*QueryHandler.php'
     autoconfigure: false
     tags:
       - { name: messenger.message_handler, bus: query.bus }
 
-  KRG\Bundle\MessengerBundle\Message\CommandHandler\:
+  Kangourouge\MessengerBundle\Message\CommandHandler\:
     resource: '../../Message/CommandHandler/*CommandHandler.php'
     autoconfigure: false
     tags:
       - { name: messenger.message_handler, bus: command.bus }
 
-  KRG\Bundle\MessengerBundle\Action\:
+  Kangourouge\MessengerBundle\Action\:
     resource: '../../Action'
     tags: ['controller.service_arguments']
 
-  KRG\Bundle\MessengerBundle\Service\:
+  Kangourouge\MessengerBundle\Service\:
     resource: '../../Service'
+
+  Kangourouge\MessengerBundle\Routing\ApiRouteLoader:
+    arguments:
+    -

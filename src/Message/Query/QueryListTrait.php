@@ -1,6 +1,6 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\Query;
+namespace Kangourouge\MessengerBundle\Message\Query;
 
 /**
  * Trait QueryListTrait
@@ -28,9 +28,9 @@ trait QueryListTrait
     /**
      * @return int
      */
-    public function getRowPerPage(): int
+    public function getRowsPerPage(): int
     {
-        return $this->getQueryParameters()['rowPerPage'] ?? 20;
+        return $this->getQueryParameters()['rowsPerPage'] ?? 20;
     }
 
     /**

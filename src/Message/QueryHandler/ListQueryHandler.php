@@ -1,9 +1,9 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Message\QueryHandler;
+namespace Kangourouge\MessengerBundle\Message\QueryHandler;
 
-use KRG\Bundle\MessengerBundle\Message\MessageRepositoryTrait;
-use KRG\Bundle\MessengerBundle\Message\Query\ListQuery;
+use Kangourouge\MessengerBundle\Message\MessageRepositoryTrait;
+use Kangourouge\MessengerBundle\Message\Query\ListQuery;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 /**
@@ -26,7 +26,7 @@ final class ListQueryHandler implements MessageHandlerInterface
             ->generateRepository($query)
             ->addParameter($query->getFilters())
             ->addParameter($query->getPage())
-            ->addParameter($query->getRowPerPage())
+            ->addParameter($query->getRowsPerPage())
             ->addParameter($query->getSort())
             ->getResult()
         ;

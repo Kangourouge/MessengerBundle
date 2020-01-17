@@ -1,10 +1,10 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\Action;
+namespace Kangourouge\MessengerBundle\Action;
 
-use KRG\Bundle\MessengerBundle\Message\MessageBus\QueryBus;
-use KRG\Bundle\MessengerBundle\Message\Query\ListQuery;
-use KRG\Bundle\MessengerBundle\Service\MessageLoggerInterface;
+use Kangourouge\MessengerBundle\Message\MessageBus\QueryBus;
+use Kangourouge\MessengerBundle\Message\Query\ListQuery;
+use Kangourouge\MessengerBundle\Service\MessageLoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**

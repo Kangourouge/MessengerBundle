@@ -1,8 +1,8 @@
 <?php
 
-namespace KRG\Bundle\MessengerBundle\ParamConverter;
+namespace Kangourouge\MessengerBundle\ParamConverter;
 
-use KRG\Bundle\MessengerBundle\Message\MessageInterface;
+use Kangourouge\MessengerBundle\Message\MessageInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,13 +29,13 @@ final class MessageParamConverter implements ParamConverterInterface
         unset($routeParams['__message']);
         $pathParameters = $routeParams;
         $message
-            ->setDenormalized($messageParameters['isDenormalized'] ?? false)
-            ->setLogged($messageParameters['isLogged'] ?? false)
-            ->setEntityClass($messageParameters['entityClass'] ?? null)
-            ->setRepositoryInterface($messageParameters['repositoryInterface'] ?? null)
-            ->setRepositoryMethod($messageParameters['repositoryMethod'] ?? null)
-            ->setValidationName($messageParameters['validationName'] ?? 'default')
-            ->setValidationGroups($messageParameters['validationGroups'] ?? [])
+            ->setDenormalized($messageParameters['is_denormalized'] ?? false)
+            ->setLogged($messageParameters['is_logged'] ?? false)
+            ->setEntityClass($messageParameters['entity_class'] ?? null)
+            ->setRepositoryInterface($messageParameters['repository_interface'] ?? null)
+            ->setRepositoryMethod($messageParameters['repository_method'] ?? null)
+            ->setValidationName($messageParameters['validation_name'] ?? 'default')
+            ->setValidationGroups($messageParameters['validation_groups'] ?? [])
         ;
 
         $payload = [
