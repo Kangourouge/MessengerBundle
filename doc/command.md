@@ -22,10 +22,10 @@ By example:
 ```php
 public function __invoke(CreateCommand $createCommand): Response
 {
-    $createCommand->setId(Uuid::uuid4());
-    $this->messageBus->dispatch($createCommand);
+        $command->setEntityId(Uuid::uuid4()->toString());
+        $this->commandBus->dispatch($command);
 
-    return Response::create(null, Response::HTTP_CREATED, ['X-location' => $createCommand->getId()]);
+        return Response::create('', Response::HTTP_CREATED, ['X-location' => $command->getEntityId()]);
 } 
 ```
 
@@ -38,14 +38,14 @@ create_stuff:
   controller: App\Action\CreateStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'createMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'createMethod'
 ```
 
 Repository method:
 
 ```php
-public function createMethod(UuidInterface $id, array $content): void;
+public function createMethod(string $id, array $content): void;
 ```
 
 UpdateCommand
@@ -63,15 +63,15 @@ update_stuff:
   controller: App\Action\UpdateStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'updateMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'updateMethod'
 ```
 
 Repository method:
 
 
 ```php
-public function updateMethod(UuidInterface $id, array $content): void;
+public function updateMethod(string $id, array $content): void;
 ```
 
 DeleteCommand
@@ -90,15 +90,15 @@ update_stuff:
   controller: App\Action\DeleteStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'deleteMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'deleteMethod'
 ```
 
 Repository method:
 
 
 ```php
-public function deleteMethod(UuidInterface $id): void;
+public function deleteMethod(string $id): void;
 ```
 
 PatchCommand
@@ -117,15 +117,15 @@ close_stuff:
   controller: App\Action\PatchStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'patchMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'patchMethod'
 ```
 
 Repository method:
 
 
 ```php
-public function patchMethod(UuidInterface $id, array $content): void;
+public function patchMethod(string $id, array $content): void;
 ```
 
 Use denormilizer (optional)
@@ -136,7 +136,7 @@ If you want persist with Doctrine, add an entityClass parameter in the __message
 
 ```yaml
 __message:
-  entityClass: 'Domain\Entity\Stuff'
+  entity_class: 'Domain\Entity\Stuff'
 ```
 
 Create, if needed, a [custom denormilzer](https://symfony.com/doc/current/serializer/custom_normalizer.html).  
@@ -144,7 +144,7 @@ Create, if needed, a [custom denormilzer](https://symfony.com/doc/current/serial
 Then adapt the repository method (just replace $content by your entity).
 
 ```php
-public function createStuff(UuidInterface $id, Stuff $stuff): void;
+public function createStuff(string $id, Stuff $stuff): void;
 ```
 
 Logged Command
@@ -155,19 +155,21 @@ Commonly, you need to know who use the command. Simply set it into the action wi
 ```php
 public function __invoke(CreateCommand $createCommand): Response
 {
-    $user = //get your user
-    $createCommand->setUser($user);
-    $createCommand->setId(Uuid::uuid4());
-    $this->messageBus->dispatch($createCommand);
+        if ($command->isLogged()) {
+            $this->messageLogger->log($command);
+        }
 
-    return Response::create(null, Response::HTTP_CREATED, ['X-location' => $createCommand->getId()]);
+        $command->setEntityId(Uuid::uuid4()->toString());
+        $this->commandBus->dispatch($command);
+
+        return Response::create('', Response::HTTP_CREATED, ['X-location' => $command->getEntityId()]);
 }
 ```
 
 Then add a user parameter in your repository method (always the last parameter).
 
 ```php
-public function createMethod(UuidInterface $id, array $content, UuidInterface $user): void;
+public function createMethod(string $id, array $content, string $user): void;
 ```
 
 Custom command

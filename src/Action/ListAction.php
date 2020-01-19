@@ -41,6 +41,13 @@ final class ListAction
             $this->messageLogger->log($query);
         }
 
-        return JsonResponse::create($this->queryBus->dispatch($query));
+        $result = $this->queryBus->dispatch($query);
+        $results = $result;
+
+        if (!empty($result['results'])) {
+            $results = $result['results'];
+        }
+
+        return JsonResponse::create($results, 200, ['X-total-result' => $result['totalResult'] ?? null]);
     }
 }

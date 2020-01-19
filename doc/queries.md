@@ -19,7 +19,7 @@ For get and return your response, use the query bus class and dispatch with quer
     $result = $queryBus->dispatch($retrieveStuff);
 ```
 
-It's basically a class who inject MessageBus with the Handle sf trait. You can use it for your own standard queries.
+It's basically a class who inject MessageBus with the Handle Symfony trait. You can use it for your own standard queries.
 
 RetrieveQuery
 -------------
@@ -37,14 +37,14 @@ retrieve_stuff:
   controller: App\Action\RetrieveStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'retrieveMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'retrieveMethod'
 ```
 
 Repository method:
 
 ```php
-public function retrieveMethod(UuidInterface $id): array;
+public function retrieveMethod(string $id): array;
 ```
 
 ListQuery
@@ -63,8 +63,8 @@ list_stuff:
   controller: App\Action\ListStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'listMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'listMethod'
 ```
 
 Repository method:
@@ -87,8 +87,8 @@ list_stuff:
   controller: App\Action\SimpleListStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'SimpleListMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'SimpleListMethod'
 ```
 
 Repository method:
@@ -111,8 +111,8 @@ list_stuff_by_warehouse:
   controller: App\Action\ListStuffAction
   defaults:
     __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'listByEntityMethod'
+      repository_interface: 'Domain\Repository\StuffRepositoryInterface'
+      repository_method: 'listByEntityMethod'
 ```
 
 Repository method:
@@ -139,9 +139,8 @@ public function __invoke(RetireveQuery $retrieveStuff): Response
 Then add a user parameter in your repository method (always the last parameter).
 
 ```php
-public function retireveMethod(UuidInterface $id, UuidInterface $user): void;
+public function retireveMethod(string $id, string $user): void;
 ```
-
 
 Custom query
 ------------

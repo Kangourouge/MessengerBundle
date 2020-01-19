@@ -1,30 +1,35 @@
 Messenger Bundle
 =================
 
-Common CQRS messages/handler & tools for Symfony messenger.
-
-This bundle provide an easy and reusable way for simple request treatment.  
+Messenger bundle provide many helpers for use CQRS (with Symfony messenger component) in json API based system.
 
 -----
 
-If your are not familiar with messenger and CQRS we highly recommend to read these pages before starting:
+He must be use for generate **basics** REST endpoints like:
 
-- [Messenger](https://symfony.com/doc/current/messenger.html)
-- [CQRS with messenger](https://symfony.com/doc/current/messenger/multiple_buses.html)
-- [Get query result](https://symfony.com/doc/current/messenger/handler_results.html)
+- list entity *(with filters and pagination)*
+- list entity by reference *(get users comments by example)*
+- retrieve entity
+- create entity
+- update entity
+- patch entity
+- delete entity
 
-Configuration
+For other specific endpoints, **we do not recommend** to use messenger bundle. Use a classic message is probably better.
+
+Basic configuration
 -------------
 
 Set buses and route message.
 
 ```yaml
+# config/packages/messenger.yaml
 framework:
     messenger:
         transports:
              sync: 'sync://'
         routing:
-            KRG\Bundle\MessengerBundle\Message\MessageInterface: sync
+            Kangourouge\MessengerBundle\Message\MessageInterface: sync
         default_bus: command.bus
         buses:
             command.bus:
@@ -39,9 +44,18 @@ framework:
                 - validation
 ```
 
+Load routes
+```yaml
+# config/route.yaml
+messenger_routes:
+  resource: 'Kangourouge\MessengerBundle\Routing\ApiRouteLoader'
+  type: service
+```
+
 Tag our repositories with 'messenger_bundle.repository'
 
 ```yaml
+# services/repository.yaml
 services:
   Infrastructure\Repository\:
     resource: RepositoryConfig
@@ -49,21 +63,24 @@ services:
     public: true
 ```
 
-
 How to use
 -----------
 
 - [Quick start](./doc/quick_start.md)
-- [Commands](./doc/command.md)
-- [Queries](./doc/queries.md)
+- [Configuration reference](./doc/configuration_reference.md)
 - [Validation](./doc/validation.md)
 
-Advanced
---------
+Advanced use
+------------
 
+If your are not familiar with messenger and CQRS we highly recommend to read these pages before starting this section:
+
+- [Messenger](https://symfony.com/doc/current/messenger.html)
+- [CQRS with messenger](https://symfony.com/doc/current/messenger/multiple_buses.html)
+- [Get query result](https://symfony.com/doc/current/messenger/handler_results.html)
+
+---
+
+- [Commands](./doc/command.md)
+- [Queries](./doc/queries.md)
 - @TODO [Make your own message](./doc/make_your_own_message.md)
-
-Todo
-----
-
-- Get only query param in paramconverter

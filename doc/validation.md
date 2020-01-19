@@ -5,10 +5,11 @@ Validation is executed by the Middleware Validation of Symfony messenger, just a
 Use the [Sf validation yaml file]('https://symfony.com/doc/current/validation.html').
 
 ```yaml
-KRG\Bundle\MessengerBundle\Message\Query\RetrieveQuery:
+Kangourouge\MessengerBundle\Message\Query\RetrieveQuery:
   properties:
     payload:
     - Collection:
+        allowMissingFields: true # don't forget this line!
         fields:
           default:
             - Collection:
@@ -18,7 +19,6 @@ KRG\Bundle\MessengerBundle\Message\Query\RetrieveQuery:
                         fields:
                           id:
                             - IsNull: ~
-        allowMissingFields: true
 ```
 
 Validation multiple
@@ -34,15 +34,15 @@ create_stuff:
    controller: App\Action\CreateStuffAction
    defaults:
      __message:
-       repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-       repositoryMethod: 'create'
-       validationName: createStuff
+       repository_interface: 'Domain\Repository\Stuffrepository_interface:'
+       repository_method: 'create'
+       validation_name: 'create_stuff'
 ```
 
 If you don't declare the validation name field, he is set as 'default'.
 
 ```yaml
-KRG\Bundle\MessengerBundle\Message\Command\CreateCommand:
+Kangourouge\MessengerBundle\Message\Command\CreateCommand:
   properties:
     payload:
     - Collection:
@@ -61,7 +61,7 @@ KRG\Bundle\MessengerBundle\Message\Command\CreateCommand:
                       - NotNull: ~
                       - Type: DateTime
                       
-          createStuff: # create stuff only
+          create_stuff: # create stuff only
           - Collection:
               fields:
                 content:
@@ -89,15 +89,15 @@ create_stuff:
    controller: App\Action\CreateStuffAction
    defaults:
      __message:
-       repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-       repositoryMethod: 'create'
+       repository_interface: 'Domain\Repository\Stuffrepository_interface:'
+       repository_method: 'create'
        validationGroups:
         - 'update'
         - 'stuff'
 ```
 
 ```php
-use KRG\Bundle\MessengerBundle\Message\Command\CreateCommand;
+use Kangourouge\MessengerBundle\Message\Command\CreateCommand;
 
 class CreateStuffAction
 {
@@ -108,14 +108,14 @@ class CreateStuffAction
         $this->messageBus = $messageBus;
     }
 
-    public function __invoke(CreateCommand $createCommand): Response
+    public function __invoke(CreateCommand $command): Response
     {
-        $createCommand->setId(Uuid::uuid4());
+        $command->setEntityId(Uuid::uuid4()->toString());
         $this->messageBus->dispatch(new Envelope($createCommand, [
-            new ValidationStamp($createCommand->getValidationGroups()),
+            new ValidationStamp($command->getValidationGroups()),
         ]);
 
-        return Response::create(null, Response::HTTP_CREATED, ['X-location' => $createCommand->getId()]);
+        return Response:create(null, Response:HTTP_CREATED, ['X-location' =>  $command->getEntityId()]);
     }
 }
 ```

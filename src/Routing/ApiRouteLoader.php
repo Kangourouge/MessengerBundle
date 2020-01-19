@@ -51,26 +51,23 @@ final class ApiRouteLoader implements RouteLoaderInterface
         $routes = new RouteCollection();
         $configs = [];
 
-        foreach ($this->config['entities'] as $entity) {
+        foreach ($this->config['entities'] as $entityName => $entity) {
             $actions = $entity['actions'];
-            $entityName = $entity['name'];
             unset($entity['actions']);
-            unset($entity['name']);
             $defaultActionConfig['other_parameters'] = $this->config['other_parameters'] ?? [];
-            $defaultActionConfig['repository_interface'] = $this->getDefaultRepositoryInterface($this->config['repository_domain'], $entityName);
-            $defaultActionConfig['entity_class'] = $this->getDefaultEntityClass($this->config['entity_domain'], $entityName);
+            $defaultActionConfig['repository_interface'] = $this->getDefaultRepositoryInterface($this->config['repository_namespace'], $entityName);
+            $defaultActionConfig['entity_class'] = $this->getDefaultEntityClass($this->config['entity_namespace'], $entityName);
 
             foreach (array_keys($entity) as $key) {
                 $this->push($defaultActionConfig, $key, $entity);
             }
 
-            foreach ($actions as $action) {
-                $actionName = $action['name'];
-                unset($action['name']);
+            foreach ($actions as $actionName => $action) {
                 $actionConfig = $defaultActionConfig;
                 $this->setDefaultByType($actionConfig, $actionName);
                 $actionConfig['path'] = $this->getPath($actionName, $entityName);
                 $actionConfig['route_name'] = sprintf('%s_%s', $actionName, $entityName);
+                $actionConfig['validation_name'] = $entityName;
 
                 foreach (array_keys($action) as $key) {
                     $this->push($actionConfig, $key, $action);
@@ -85,10 +82,12 @@ final class ApiRouteLoader implements RouteLoaderInterface
             $path = $config['path'];
             $method = $config['method'];
             $controller = $config['controller'];
+            $routeName = $config['route_name'];
             unset($config['other_parameters']);
             unset($config['path']);
             unset($config['method']);
             unset($config['controller']);
+            unset($config['route_name']);
             $route = new Route($path);
             $route->setMethods($method);
             $route->setDefault('_controller', $controller);
@@ -105,10 +104,38 @@ final class ApiRouteLoader implements RouteLoaderInterface
                 $route->setDefault($name, $otherParameter);
             }
 
-            $routes->add($config['route_name'], $route);
+            $routes->add($routeName, $route);
         }
 
         return $routes;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getCommandsName(): array
+    {
+        return [
+            self::ACTION_CREATE,
+            self::ACTION_DELETE,
+            self::ACTION_DELETE_MANY,
+            self::ACTION_PATCH,
+            self::ACTION_UPDATE,
+            self::ACTION_UPDATE_MANY,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public static function getQueriesName(): array
+    {
+        return [
+            self::ACTION_LIST,
+            self::ACTION_LIST_BY_REFERENCE,
+            self::ACTION_RETRIEVE,
+            self::ACTION_RETRIEVE_MANY,
+        ];
     }
 
     /**
@@ -146,25 +173,25 @@ final class ApiRouteLoader implements RouteLoaderInterface
     }
 
     /**
-     * @param string $domain
-     * @param string $name
+     * @param string $namespace
+     * @param string $interfaceName
      *
      * @return string
      */
-    private function getDefaultRepositoryInterface(string $domain, string $name): string
+    private function getDefaultRepositoryInterface(string $namespace, string $interfaceName): string
     {
-        return sprintf('%s\%sRepositoryInterface', $domain, Inflector::classify($name));
+        return sprintf('%s\%sRepositoryInterface', $namespace, Inflector::classify($interfaceName));
     }
 
     /**
-     * @param string $domain
-     * @param string $name
+     * @param string $namespace
+     * @param string $className
      *
      * @return string
      */
-    private function getDefaultEntityClass(string $domain, string $name): string
+    private function getDefaultEntityClass(string $namespace, string $className): string
     {
-        return sprintf('%s\%s', $domain, Inflector::classify($name));
+        return sprintf('%s\%s', $namespace, Inflector::classify($className));
     }
 
     /**
