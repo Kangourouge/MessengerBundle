@@ -1,103 +1,77 @@
 Quick start
 ===========
 
-For this example, we use the CreateCommand message for insert a new 'stuff' in the database.
+The easiest way for map your api endpoints is to use the bundle configuration files.       
+It's a little bit magic but avoid to write many config files and class.
 
 Basic usage
 -----------
 
-1 - Create your Action
-
-```php
-use KRG\Bundle\MessengerBundle\Message\Command\CreateCommand;
-
-class CreateStuffAction
-{
-    protected $messageBus;
-
-    public function __construct(MessageBusInterface $messageBus)
-    {
-        $this->messageBus = $messageBus;
-    }
-
-    public function __invoke(CreateCommand $createCommand): Response
-    {
-        $createCommand->setId(Uuid::uuid4());
-        $this->messageBus->dispatch($createCommand);
-
-        return Response::create(null, Response::HTTP_CREATED, ['X-location' => $createCommand->getId()]);
-    }
-}
-```
-
-2 - Validate your message
+1 - Set up yours endpoints:
 
 ```yaml
-KRG\Bundle\MessengerBundle\Message\Command\CreateCommand:
+# config/packages/kangourouge_messenger.yaml
+kangourouge_messenger:
+  entities:
+    my_entity_name:
+      actions:
+        list: ~
+        create: ~
+    an_other_entity_name:
+      actions:
+        list: ~
+```
+
+2 - Validate yours messages
+
+```yaml
+# config/validator/validation.yaml
+Kangourouge\MessengerBundle\Message\Command\CreateCommand:
   properties:
     payload:
     - Collection:
+        allowMissingFields: true
         fields:
           default:
             - Collection:
-            fields:
-              content:
-              - Collection:
-                  fields:
-                    name:
-                    - NotNull: ~
-                    - Type: string
-                    startAt:
-                    - NotNull: ~
-                    - Type: DateTime
-        allowMissingFields: true
+                allowExtraFields: true
+          my_entity_name: #remove for avoid validation (not recommended!)
+            - Collection:
+                fields:
+                  content:
+                  - Collection:
+                      fields:
+                        name:
+                        - NotNull: ~
+                        - Type: string
+                        startAt:
+                        - NotNull: ~
+                        - Type: DateTime
 ```
-
-For multiple validation see [validation](validation);
 
 3 - Add a new repository method
 
 ```php
-interface StuffRepositoryInterface
+class MyEntityNameRepository implement MyEntityNameRepositoryInterface
 
-    public function create(Uuid interface $id, array $content): void;
-```
-
-```php
-class StuffRepository implement StuffRepositoryInterface
-
-    public function create(UuidInterface $id, array $content): void
+    public function list(): array
     {
-        // Doing DB insert.
+        // return a list of my_entity_name
+    }
+
+    public function create(string $id, array $content): void
+    {
+        // create a new my_entity_name
     }
 ```
 
-4 - Add a new route
+It's all. If you check routes with ```bin/console debug:route ```, you will see 3 new route:
+- list_my_entity_name
+- create_my_entity_name
+- list_an_other_entity_name
 
-```yaml
-create_stuff:
-  path: /stuff
-  methods: POST
-  controller: App\Action\CreateStuffAction
-  defaults:
-    __message:
-      repositoryInterface: 'Domain\Repository\StuffRepositoryInterface'
-      repositoryMethod: 'create'
-```
+**Don't forget clear cache when you add new routes with this method!**
+   
+Messenger use preconfigure actions/message for map yours endpoints, entity and repository method.
 
-Messages available
-------------------
-
-**[Queries](queries.md):**
-- Retrieve
-- List
-- Simple list
-- List by entity
-
-**[Command:](command.md)**
-- Create
-- Update
-- Delete
-- Patch
-
-**Or [make your custom message](make_your_own_message.md)**
+Now you can read the [full configuration](./configuration_reference.md) reference for more customization.

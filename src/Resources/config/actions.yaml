@@ -37,7 +37,7 @@ actions:
   delete:
     method: DELETE
     controller: Kangourouge\MessengerBundle\Action\DeleteAction
-    repository_method: delete
+    repository_method: remove
     path: '{entity}/{id}'
   update_many:
     method: PUT
