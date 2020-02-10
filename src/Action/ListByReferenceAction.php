@@ -48,11 +48,10 @@ final class ListByReferenceAction
         }
 
         $this->messageResourceValidator->validate($query);
-
         $result = $this->queryBus->dispatch($query);
         $results = $result;
 
-        if (!empty($result['results'])) {
+        if (isset($result['results']) || array_key_exists('results', $result)) {
             $results = $result['results'];
         }
 

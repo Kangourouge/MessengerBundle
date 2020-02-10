@@ -162,8 +162,8 @@ final class ApiRouteLoader implements RouteLoaderInterface
      */
     private function setDefaultByType(array &$action, string $type): void
     {
-        if (empty($this->defaultsAction[$type])) {
-            throw new \Exception('Action not found.'); //@TODO custom exception
+        if (!isset($this->defaultsAction[$type]) || !array_key_exists($type, $this->defaultsAction)) {
+            throw new \Exception('Actions not found.'); //@TODO custom exception
         }
 
         $default = $this->defaultsAction[$type];
@@ -203,8 +203,8 @@ final class ApiRouteLoader implements RouteLoaderInterface
      */
     private function getPath(string $type, string $name): string
     {
-        if (empty($this->defaultsAction[$type])) {
-            throw new \Exception('Action not found.'); //@TODO custom exception
+        if (!isset($this->defaultsAction[$type]) || !array_key_exists($type, $this->defaultsAction)) {
+            throw new \Exception('Actions not found.'); //@TODO custom exception
         }
 
         $path = str_replace('{entity}', str_replace('_', '-', Inflector::pluralize($name)), $this->defaultsAction[$type]['path']);

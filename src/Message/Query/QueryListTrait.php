@@ -18,19 +18,19 @@ trait QueryListTrait
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPage(): int
+    public function getPage(): ?int
     {
-        return $this->getQueryParameters()['page'] ?? 1;
+        return $this->getQueryParameters()['page'] ?? null;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getRowsPerPage(): int
+    public function getRowsPerPage(): ?int
     {
-        return $this->getQueryParameters()['rowsPerPage'] ?? 20;
+        return $this->getQueryParameters()['rowsPerPage'] ?? null;
     }
 
     /**
